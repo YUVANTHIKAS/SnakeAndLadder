@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,14 @@ namespace SnakeAndLadder
     public class SnakeAndLadder
     {
         const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100, STARTING_POSITION = 0;
-        int position = 0;
+        int position = 0, count = 0;
 
         Random random = new Random();
         public int DieRoll()
         {
             int diePosition = random.Next(1, 7);
-            Console.WriteLine(diePosition);
+            Console.WriteLine("Player Position" + " " + this.position);
+            count++;
             return diePosition;
         }
         public void Game()
@@ -29,7 +31,7 @@ namespace SnakeAndLadder
                         break;
                     case LADDER:
                         int dieRoll = DieRoll();
-                        if (this.position < WINNING_POSITION)
+                        if (this.position + dieRoll < WINNING_POSITION)
                         {
                             this.position += dieRoll;
                         }
@@ -47,6 +49,7 @@ namespace SnakeAndLadder
                         break;
                 }
             }
+            Console.WriteLine("Number of times the dice's played" + " " + count);
         }
     }
 }
